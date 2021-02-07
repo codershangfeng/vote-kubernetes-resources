@@ -1,6 +1,6 @@
 Total Hour: 2 Hour
 
-1. Add vote handler to server (without integration test) (5min)
+1. Add vote handler to server (without integration test) (5min) (/)
 
 2. End-2-End Test for vote-web & vote-service (10min)
 
