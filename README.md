@@ -86,7 +86,14 @@ istioctl install --set meshConfig.enablePrometheusMerge=false --set profile=demo
         
     - Certificate signing requests (CSR)
 
-1. 
+1. Authentication
+    ![Authentication Architecture](https://istio.io/v1.8/docs/concepts/security/authn.svg)
+    
+    - [Gloablly enabling Istio mutal TLS in STRICT mode](https://istio.io/v1.8/docs/tasks/security/authentication/authn-policy/#globally-enabling-istio-mutual-tls-in-strict-mode)
+        - [Peer authentication](https://istio.io/v1.8/docs/concepts/security/#peer-authentication)
+        - [X-Forwarded-Client-Cert](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#x-forwarded-client-cert)
+    
+    - [Enable mutual TLS per namespace or workload](https://istio.io/v1.8/docs/tasks/security/authentication/authn-policy/#enable-mutual-tls-per-namespace-or-workload)
 
 1. Authorization
     ![Authorization Architecture](https://istio.io/v1.8/docs/concepts/security/authz.svg)
