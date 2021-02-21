@@ -1,0 +1,45 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: curl
+#   namespace: default
+# spec:
+#   selector:
+#     matchLabels:
+#       app: curl
+#   template:
+#     metadata:
+#       labels:
+#         app: curl
+#     spec:
+#       containers:
+#       - name: curl
+#         image: radial/busyboxplus:curl
+#         command:
+#           - sleep
+#           - "3600"
+#         resources:
+#           limits:
+#             memory: "64Mi"
+#             cpu: "128m"
+#         imagePullPolicy: IfNotPresent
+#       restartPolicy: Always
+# ---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: curl
+  labels:
+    name: curl
+spec:
+  containers:
+  - name: curl
+    image: radial/busyboxplus:curl
+    command:
+      - sleep
+      - "3600"
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "128m"
+  restartPolicy: Always
