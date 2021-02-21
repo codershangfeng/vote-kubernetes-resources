@@ -1,0 +1,18 @@
+apiVersion: "security.istio.io/v1beta1"
+kind: AuthorizationPolicy
+metadata:
+  name: vote-service
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: vote-service
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/default/sa/vote-web"]
+  - to:
+    - operation:
+        methods: ["GET"]
+        paths:
+        - "vote/*"
