@@ -16,7 +16,7 @@ spec:
       serviceAccountName: vote-service
       containers:
       - name: vote-service
-        image: vote-service:latest
+        image: vote-service:print-header
         imagePullPolicy: Never
         resources:
           limits:
