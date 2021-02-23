@@ -14,5 +14,11 @@ spec:
     route:
     - destination:
         host: vote-service.default.svc.cluster.local
+        subset: v1
+      weight: 80
+    - destination:
+        host: vote-service.default.svc.cluster.local
+        subset: v2
+      weight: 20
     
   

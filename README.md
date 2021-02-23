@@ -17,6 +17,25 @@ istioctl install --set meshConfig.enablePrometheusMerge=false --set profile=demo
 
 ### Traffic Management
 
+- Virtual services
+
+    * Address multiple application services through a single virtual service.
+    * Configure traffic rules in combination with gateways to control ingress and egress traffic.
+
+- Destination rules
+    
+    Along with virtual services, destination rules are a key part of Istio's traffic routing functionality.
+
+    * Random
+    * Weighted
+    * Least Requests
+
+
+- Gateways
+
+- Service entries
+
+- Sidecars
 
 ### Security
 
