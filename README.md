@@ -17,25 +17,37 @@ istioctl install --set meshConfig.enablePrometheusMerge=false --set profile=demo
 
 ### Traffic Management
 
-- Virtual services
+- How to traffic routing?
 
-    * Address multiple application services through a single virtual service.
-    * Configure traffic rules in combination with gateways to control ingress and egress traffic.
+    * Virtual services
 
-- Destination rules
+        * Address multiple application services through a single virtual service.
+        * Configure traffic rules in combination with gateways to control ingress and egress traffic.
+
+    * Destination rules
     
-    Along with virtual services, destination rules are a key part of Istio's traffic routing functionality.
+        Along with virtual services, destination rules are a key part of Istio's traffic routing functionality.
 
-    * Random
-    * Weighted
-    * Least Requests
+        * Random
+        * Weighted
+        * Least Requests
 
 
-- Gateways
+- How to expose a service outside of the service mesh cluser?
 
-- Service entries
+    * Kubectl Proxy & NodePort & LoadBalancer & Ingress
 
-- Sidecars
+    * Kubernetes Ingress
+
+    * Istio Gateway
+
+- How to access extenal services inside service mesh cluster?
+    
+    As [Accessing External Services](https://istio.io/latest/docs/tasks/traffic-management/egress/egress-control/) shows:
+
+    1. Allow the Envoy proxy to pass requests through to services that are not configured inside the mesh.
+    1. Configure service entries to provide controlled access to external services.
+    1. Completely bypass the Envoy proxy for a specific range of IPs.
 
 ### Security
 
