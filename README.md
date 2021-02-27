@@ -143,4 +143,10 @@ Configure Prometheus Datasource: `http://prometheus-server.default.svc.cluster.l
 
 - Service Account - [Kubernetes Tips: Using a ServiceAccount](https://betterprogramming.pub/k8s-tips-using-a-serviceaccount-801c433d0023)
 
-- 
+- NodePort vs LoadBalancer vs Ingress
+
+    - [Access Services Running on Clusters
+](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/)
+        `http://kubernetes_master_address/api/v1/namespaces/namespace_name/services/[https:]service_name[:port_name]/proxy`
+
+    - [Kubernetes NodePort vs LoadBalancer vs Ingress? When should I use what?](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
