@@ -134,3 +134,13 @@ Configure Prometheus Datasource: `http://prometheus-server.default.svc.cluster.l
 - [Connect Applications Service](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/)
     
     ```kubectl run curl --image=radial/busyboxplus:curl -i --tty```
+
+
+## References:
+
+
+### Kubernetes Related
+
+- Service Account - [Kubernetes Tips: Using a ServiceAccount](https://betterprogramming.pub/k8s-tips-using-a-serviceaccount-801c433d0023)
+
+- 
