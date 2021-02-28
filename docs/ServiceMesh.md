@@ -165,6 +165,11 @@ Service Mesh vs. Spring Cloud
 
     * Kubectl Proxy & NodePort & LoadBalancer & Ingress
 
+        ![proxy](https://miro.medium.com/max/700/1*I4j4xaaxsuchdvO66V3lAg.png)
+        ![node port](https://miro.medium.com/max/700/1*CdyUtG-8CfGu2oFC5s0KwA.png)
+        ![load balancer](https://miro.medium.com/max/700/1*P-10bQg_1VheU9DRlvHBTQ.png)
+        ![ingress](https://miro.medium.com/max/700/1*KIVa4hUVZxg-8Ncabo8pdg.png)
+
     * Kubernetes Ingress - [code](../ingress/kubernetes-ingress/ingress.yaml)
 
     * Istio Gateway - [code](../ingress/istio-ingress-gateway/ingressgateway.yaml)
