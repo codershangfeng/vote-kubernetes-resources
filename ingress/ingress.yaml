@@ -9,7 +9,11 @@ spec:
   - host: vote.com
     http:
       paths:
-      - path: "/*"
+      - path: "/vote/*"
         backend:
           serviceName: vote-service
           servicePort: 8080
+      - path: "/*"
+        backend:
+          serviceName: vote-web
+          servicePort: 3000
