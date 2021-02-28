@@ -165,9 +165,13 @@ Service Mesh vs. Spring Cloud
 
     * Kubectl Proxy & NodePort & LoadBalancer & Ingress
 
-    * Kubernetes Ingress
+    * Kubernetes Ingress - [code](../kubernetes-ingress/ingress.yaml)
 
-    * Istio Gateway
+    * Istio Gateway - [code](../istio-ingress-gateway/ingressgateway.yaml)
+
+    * Kubernetes Service APIs
+        ![Gateway API](https://gateway-api.sigs.k8s.io/images/api-model.png)
+
 
 - How to access extenal services inside service mesh cluster?
     
