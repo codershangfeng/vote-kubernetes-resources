@@ -7,7 +7,7 @@
 * 多语言
 * 系统复杂度 - 指数级上升
 
-Zen: 
+*Zen of Servie Mesh*: 
 - Service Mesh是一个“基础设施”层，用于处理服务间通信。
 - 云原生应用有着复杂的网络拓扑，而Service Mesh就是要保证请求可以在这些“拓扑”中“可靠”地穿梭。
 - 实际应用中，Service Mesh是有一系列的“网络代理”组成的，它们与应用程序部署在一起，但应用程序“不需要知道”它们的存在。
@@ -34,7 +34,7 @@ Service Mesh vs. Spring Cloud
 
 ![History](https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg)
 
-**NOTE: Tons of Benefits**
+**注: Tons of Benefits**
 
 #### 2.1.2 Why you need Kubernetes and what it can do?
 
@@ -45,7 +45,7 @@ Service Mesh vs. Spring Cloud
 - Self-healing
 - Secret and configuration management
 
-**Key: Deployment, Scaling, Load Balance**
+**关键字: Deployment, Scaling, Load Balance**
 
 #### 2.1.3 Key Concept
 ![Kubernetes Architecture](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
@@ -165,11 +165,11 @@ Service Mesh vs. Spring Cloud
 
     * Kubectl Proxy & NodePort & LoadBalancer & Ingress
 
-    * Kubernetes Ingress - [code](../kubernetes-ingress/ingress.yaml)
+    * Kubernetes Ingress - [code](../ingress/kubernetes-ingress/ingress.yaml)
 
-    * Istio Gateway - [code](../istio-ingress-gateway/ingressgateway.yaml)
+    * Istio Gateway - [code](../ingress/istio-ingress-gateway/ingressgateway.yaml)
 
-    * Kubernetes Service APIs
+    * Kubernetes Service APIs - [link](https://istio.io/latest/docs/tasks/traffic-management/ingress/service-apis/)
         ![Gateway API](https://gateway-api.sigs.k8s.io/images/api-model.png)
 
 
