@@ -148,18 +148,79 @@ Service Mesh vs. Spring Cloud
 - How to traffic routing?
 
     * Virtual services
+        > * Address multiple application services through a single virtual service.
+        > * Configure traffic rules in combination with gateways to control ingress and egress traffic.
+        
+        在kubernetes Service之上的一层抽象，更加面向业务请求/需求方。
 
-        * Address multiple application services through a single virtual service.
-        * Configure traffic rules in combination with gateways to control ingress and egress traffic.
+        **HttpRoute**
+        ```go
+        type HTTPRoute struct {
+	        Name                 string
+	        Match                []*HTTPMatchRequest
+	        Route                []*HTTPRouteDestination
+	        Redirect             *HTTPRedirect
+	        Delegate             *Delegate
+	        Rewrite              *HTTPRewrite
+	        Timeout              *types.Duration
+	        Retries              *HTTPRetry
+	        Fault                *HTTPFaultInjection
+	        Mirror               *Destination
+	        MirrorPercentage     *Percent
+	        CorsPolicy           *CorsPolicy
+	        Headers              *Headers
+	        XXX_NoUnkeyedLiteral struct{}
+	        XXX_unrecognized     []byte
+	        XXX_sizecache        int32
+        }
+        ```
+        * 路由 (route)
+            * 权重 (weight)
+        * 重定向 (redirect)
+        * 代理 (delegate)
+        * 重写Http URIs and Authority headers （rewrite)
+        * 超时 (timeout)
+        * 重试 (retries)
+        * 错误注入 (Fault Injection)
+        * 镜像 (mirror / mirrorPercentage)
+        * cors策略 (corsPolicy)
+
+        **TLCRoute**
+        ```go
+        type TLSRoute struct {
+	        Match                []*TLSMatchAttributes 
+	        Route                []*RouteDestination 
+	        XXX_NoUnkeyedLiteral struct{} 
+	        XXX_unrecognized     []byte   
+	        XXX_sizecache        int32    
+        }
+        ```
+
+        **TCPRoute**
+        ```go
+        type TCPRoute struct {
+	        Match                []*L4MatchAttributes 
+	        Route                []*RouteDestination 
+	        XXX_NoUnkeyedLiteral struct{}    
+	        XXX_unrecognized     []byte      
+	        XXX_sizecache        int32       
+        }
+        ```
 
     * Destination rules
     
-        Along with virtual services, destination rules are a key part of Istio's traffic routing functionality.
+        > Along with virtual services, destination rules are a key part of Istio's traffic routing functionality.
 
-        * Random
-        * Weighted
-        * Least Requests
-
+        从Virtual Service中剥离出来，是构建Kubernetes **Service** & **Pod**资源的路由逻辑的抽象层
+        
+        * 负载均衡 (loadBalancer: simple / consistentHash / LocalityLbSetting)
+            * ROUND_ROBIN (Default)
+            * LEAST_CONN
+            * RANDOM
+            * PASSTHROUGH (*Be Careful*)
+        * 边车连接池大小 (connectionPool)
+        * 断路器 (connectionPool / outlierDetection) 
+        * TLS (tls)
 
 - How to expose a service outside of the service mesh cluser?
 
