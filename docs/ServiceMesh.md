@@ -188,8 +188,6 @@ Service Mesh vs. Spring Cloud
 
 ##### **Security**
 
-![Security Overview](https://istio.io/latest/docs/concepts/security/overview.svg)
-
 ![Security Architecture](https://istio.io/v1.8/docs/concepts/security/arch-sec.svg)
 
 * To defend against man-in-the-middle attacks, they need traffic encryption.
