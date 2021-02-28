@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: vote-ingress
@@ -6,14 +6,21 @@ metadata:
     kubernetes.io/ingress.class: istio
 spec:
   rules:
-  - host: vote.com
-    http:
+  - http:
       paths:
-      - path: "/vote/*"
+      - pathType: Prefix
+        path: "/vote"
         backend:
-          serviceName: vote-service
-          servicePort: 8080
-      - path: "/*"
+          service:
+            name: vote-service
+            port:
+              number: 8080
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
         backend:
-          serviceName: vote-web
-          servicePort: 3000
+          service:
+            name: vote-web
+            port:
+              number: 3000
