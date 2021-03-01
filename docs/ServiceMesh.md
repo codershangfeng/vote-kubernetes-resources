@@ -1,4 +1,8 @@
-# Service Mesh
+# Table of Contents
+
+> 1. Introduction of Service Mesh
+> 1. Istio
+> 1. In Action
 
 ## 1. Introduction of Service Mesh
 
@@ -52,7 +56,7 @@ Service Mesh vs. Spring Cloud
 
 当你部署完Kubernetes，即拥有了一个完整的集群。
 
-一个Kubernetes集群由一组成为节点的机器组成。这些节点上运行 Kubernetes 所管理的容器化应用。集群具有至少一个工作节点。
+一个Kubernetes集群由一组称为节点的机器组成。这些节点上运行 Kubernetes 所管理的容器化应用。集群具有至少一个工作节点。
 
 工作节点托管作为应用负载的组件的 Pod 。控制平面管理集群中的工作节点和 Pod 。 为集群提供故障转移和高可用性，这些控制平面一般跨多主机运行，集群跨多个节点运行。
 
@@ -140,10 +144,9 @@ Service Mesh vs. Spring Cloud
         * Startup time goes down
         * Resource usage goes down and responsiveness goes up
 
+## 3 In Action
 
-#### 2.2.2 Concept
-
-##### **Traffic Management**
+### 3.1 Traffic Management
 
 - How to traffic routing?
 
@@ -247,7 +250,7 @@ Service Mesh vs. Spring Cloud
     1. Configure service entries to provide controlled access to external services.
     1. Completely bypass the Envoy proxy for a specific range of IPs.
 
-##### **Security**
+### 3.2 Security
 
 ![Security Architecture](https://istio.io/v1.8/docs/concepts/security/arch-sec.svg)
 
@@ -293,7 +296,7 @@ Service Mesh vs. Spring Cloud
 
     - The deny policy takes precedence over the allow policy.
 
-##### **Observability**
+### 3.3 Observability
 For monitoring Istio traffic monitoring, we can use Prometheus, Jaeger, Grafanna and Kiali. All of them can be installed by helm.
 
 TIPS: `helm search repo [chart_name]` provides the ability to search for Heml charts.
@@ -338,8 +341,8 @@ TIPS: `helm search repo [chart_name]` provides the ability to search for Heml ch
 
 1. Zipkin
 
-## References:
 
+## References:
 
 ### Kubernetes Related
 
