@@ -63,3 +63,57 @@ kind: ServiceAccount
 metadata:
   name: vote-web
   namespace: default
+
+# Vote Service with v1 and v2
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: vote-service-v1
+#   namespace: default
+# spec:
+#   selector:
+#     matchLabels:
+#       app: vote-service-v1
+#   template:
+#     metadata:
+#       labels:
+#         app: vote-service-v1
+#     spec:
+#       serviceAccountName: vote-service
+#       containers:
+#       - name: vote-service-v1
+#         image: vote-service:v1
+#         resources:
+#           limits:
+#             memory: "128Mi"
+#             cpu: "500m"
+#         ports:
+#         - containerPort: 8080
+#         imagePullPolicy: Never
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: vote-service-v2
+#   namespace: default
+# spec:
+#   selector:
+#     matchLabels:
+#       app: vote-service-v2
+#   template:
+#     metadata:
+#       labels:
+#         app: vote-service-v2
+#     spec:
+#       serviceAccountName: vote-service
+#       containers:
+#       - name: vote-service-v2
+#         image: vote-service:v2
+#         resources:
+#           limits:
+#             memory: "128Mi"
+#             cpu: "500m"
+#         ports:
+#         - containerPort: 8080
+#         imagePullPolicy: Never
