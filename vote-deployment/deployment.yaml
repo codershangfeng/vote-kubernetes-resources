@@ -72,17 +72,20 @@ metadata:
 #   name: vote-service-v1
 #   namespace: default
 # spec:
+#   replicas: 3
 #   selector:
 #     matchLabels:
-#       app: vote-service-v1
+#       app: vote-service
+#       version: v1
 #   template:
 #     metadata:
 #       labels:
-#         app: vote-service-v1
+#         app: vote-service
+#         version: v1
 #     spec:
 #       serviceAccountName: vote-service
 #       containers:
-#       - name: vote-service-v1
+#       - name: vote-service
 #         image: vote-service:v1
 #         resources:
 #           limits:
@@ -98,17 +101,20 @@ metadata:
 #   name: vote-service-v2
 #   namespace: default
 # spec:
+#   replicas: 2
 #   selector:
 #     matchLabels:
-#       app: vote-service-v2
+#       app: vote-service
+#       version: v2
 #   template:
 #     metadata:
 #       labels:
-#         app: vote-service-v2
+#         app: vote-service
+#         version: v2
 #     spec:
 #       serviceAccountName: vote-service
 #       containers:
-#       - name: vote-service-v2
+#       - name: vote-service
 #         image: vote-service:v2
 #         resources:
 #           limits:
