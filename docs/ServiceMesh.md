@@ -229,10 +229,25 @@ Service Mesh vs. Spring Cloud
 
     * Kubectl Proxy & NodePort & LoadBalancer & Ingress
 
+        - Proxy
         ![proxy](https://miro.medium.com/max/700/1*I4j4xaaxsuchdvO66V3lAg.png)
+
+        - NodePort
         ![node port](https://miro.medium.com/max/700/1*CdyUtG-8CfGu2oFC5s0KwA.png)
+        缺点: 
+            1. Port Binding
+            2. 需要单独Load Balancing
+        
+        - Load Balancer
         ![load balancer](https://miro.medium.com/max/700/1*P-10bQg_1VheU9DRlvHBTQ.png)
+        缺点:
+            1. 依赖于cloud provider
+            2. 一个服务，一个LB
+        
+        - Ingress
         ![ingress](https://miro.medium.com/max/700/1*KIVa4hUVZxg-8Ncabo8pdg.png)
+        缺点:
+            1. 负载集中
 
     * Kubernetes Ingress - [code](../ingress/kubernetes-ingress/ingress.yaml)
 
