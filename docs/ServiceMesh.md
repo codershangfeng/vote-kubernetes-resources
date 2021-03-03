@@ -146,7 +146,54 @@ Service Mesh vs. Spring Cloud
 
 ## 3 In Action
 
-### 3.1 Traffic Management
+### 3.1 Security
+
+![Security Architecture](https://istio.io/v1.8/docs/concepts/security/arch-sec.svg)
+
+* To defend against man-in-the-middle attacks, they need traffic encryption.
+
+* To provide flexible service access control, they need mutual TLS and fine-grained access policies.
+
+* To determine who did what at what time, they need auditing tools.
+
+
+1. Certifiate Management
+    
+    ![Identity Provisioning Workflow](https://istio.io/v1.8/docs/concepts/security/id-prov.svg)
+    
+    - Envoy secret discovery service (SDS)
+        
+    - Certificate signing requests (CSR)
+
+1. Authentication
+    ![Authentication Architecture](https://istio.io/v1.8/docs/concepts/security/authn.svg)
+    
+    - [Gloablly enabling Istio mutal TLS in STRICT mode](https://istio.io/v1.8/docs/tasks/security/authentication/authn-policy/#globally-enabling-istio-mutual-tls-in-strict-mode)
+        - [Peer authentication](https://istio.io/v1.8/docs/concepts/security/#peer-authentication)
+        - [X-Forwarded-Client-Cert](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#x-forwarded-client-cert)
+    
+    - [Enable mutual TLS per namespace or workload](https://istio.io/v1.8/docs/tasks/security/authentication/authn-policy/#enable-mutual-tls-per-namespace-or-workload)
+
+1. Authorization
+    ![Authorization Architecture](https://istio.io/v1.8/docs/concepts/security/authz.svg)
+    
+    - Workload-to-workload and end-user-to-workload authorization.
+
+    - A Simple API: it includes a single AuthorizationPolicy **CRD**, which is easy to use and maintain.
+
+    - Flexible semantics: operators can define custom conditions on Istio attributes, and use DENY and ALLOW actions.
+    
+    - High performance: Istio authorization is enforced natively on Envoy.
+    
+    - High compatibility: supports gRPC, HTTP, HTTPS and HTTP2 natively, as well as any plain TCP protocols.
+    
+    From v1.4, `AuthorizationPolicy` is in use.
+    - [Authorizaiton for HTTP traffic](https://istio.io/v1.8/docs/tasks/security/authorization/authz-http/)
+
+    - The deny policy takes precedence over the allow policy.
+
+
+### 3.2 Traffic Management
 
 - How to traffic routing?
 
@@ -264,52 +311,6 @@ Service Mesh vs. Spring Cloud
     1. Allow the Envoy proxy to pass requests through to services that are not configured inside the mesh.
     1. Configure service entries to provide controlled access to external services.
     1. Completely bypass the Envoy proxy for a specific range of IPs.
-
-### 3.2 Security
-
-![Security Architecture](https://istio.io/v1.8/docs/concepts/security/arch-sec.svg)
-
-* To defend against man-in-the-middle attacks, they need traffic encryption.
-
-* To provide flexible service access control, they need mutual TLS and fine-grained access policies.
-
-* To determine who did what at what time, they need auditing tools.
-
-
-1. Certifiate Management
-    
-    ![Identity Provisioning Workflow](https://istio.io/v1.8/docs/concepts/security/id-prov.svg)
-    
-    - Envoy secret discovery service (SDS)
-        
-    - Certificate signing requests (CSR)
-
-1. Authentication
-    ![Authentication Architecture](https://istio.io/v1.8/docs/concepts/security/authn.svg)
-    
-    - [Gloablly enabling Istio mutal TLS in STRICT mode](https://istio.io/v1.8/docs/tasks/security/authentication/authn-policy/#globally-enabling-istio-mutual-tls-in-strict-mode)
-        - [Peer authentication](https://istio.io/v1.8/docs/concepts/security/#peer-authentication)
-        - [X-Forwarded-Client-Cert](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#x-forwarded-client-cert)
-    
-    - [Enable mutual TLS per namespace or workload](https://istio.io/v1.8/docs/tasks/security/authentication/authn-policy/#enable-mutual-tls-per-namespace-or-workload)
-
-1. Authorization
-    ![Authorization Architecture](https://istio.io/v1.8/docs/concepts/security/authz.svg)
-    
-    - Workload-to-workload and end-user-to-workload authorization.
-
-    - A Simple API: it includes a single AuthorizationPolicy **CRD**, which is easy to use and maintain.
-
-    - Flexible semantics: operators can define custom conditions on Istio attributes, and use DENY and ALLOW actions.
-    
-    - High performance: Istio authorization is enforced natively on Envoy.
-    
-    - High compatibility: supports gRPC, HTTP, HTTPS and HTTP2 natively, as well as any plain TCP protocols.
-    
-    From v1.4, `AuthorizationPolicy` is in use.
-    - [Authorizaiton for HTTP traffic](https://istio.io/v1.8/docs/tasks/security/authorization/authz-http/)
-
-    - The deny policy takes precedence over the allow policy.
 
 ### 3.3 Observability
 For monitoring Istio traffic monitoring, we can use Prometheus, Jaeger, Grafanna and Kiali. All of them can be installed by helm.
