@@ -23,4 +23,23 @@ spec:
     - operation:
         methods: ["GET"]
         paths:
-        - "vote/*"
+        - "/vote/*"
+---
+apiVersion: "security.istio.io/v1beta1"
+kind: AuthorizationPolicy
+metadata:
+  name: vote-web
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: vote-web
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
+  - to:
+    - operation:
+        methods: ["GET"]
+        paths:
+        - "/*"
