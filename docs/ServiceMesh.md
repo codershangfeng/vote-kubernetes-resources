@@ -4,6 +4,12 @@
 > 1. Istio
 > 1. In Action
 
+# Goal
+
+> 1. Understand basic ideas behind Service Mesh (Istio)
+> 1. Highlevel recognition of Istio
+> 1. Distinguish function/component differeces between Kubernetes and Istio
+
 ## 1. Introduction of Service Mesh
 
 ### The Intention of Service Mesh
