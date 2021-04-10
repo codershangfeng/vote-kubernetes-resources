@@ -1,128 +1,6 @@
-# Table of Contents
+# Istio
 
-> 1. Introduction of Service Mesh
-> 1. Istio
-> 1. In Action
-
-# Goal
-
-> 1. Understand basic ideas behind Service Mesh (Istio)
-> 1. Highlevel recognition of Istio
-> 1. Distinguish function/component differeces between Kubernetes and Istio
-
-## 1. Introduction of Service Mesh
-
-### The Intention of Service Mesh
-服务 -> 服务治理 -> **微服务时代**(*将服务异化到不同交付团队，或者独立发布和独立伸缩的价值 >> 服务/容器编排的成本*)
-* 多语言
-* 系统复杂度 - 指数级上升
-
-*Zen of Servie Mesh*: 
-- Service Mesh是一个“基础设施”层，用于处理服务间通信。
-- 云原生应用有着复杂的网络拓扑，而Service Mesh就是要保证请求可以在这些“拓扑”中“可靠”地穿梭。
-- 实际应用中，Service Mesh是有一系列的“网络代理”组成的，它们与应用程序部署在一起，但应用程序“不需要知道”它们的存在。
-
-    * Infrastructure: 下沉
-    * Topology: 服务物理网络上的抽象层
-    * Reliablity: 要靠谱！
-    * Network Proxy: 透明、跨语言
-    * Unawareness: 提供上层的全套功能且业务无侵入
-
-典型应用:
-- Traffic Control, such as rich routing rules, retries, A/B testing, canary rollouts, etc
-- Authentication & Authorization
-- Monitoring
-
-Service Mesh vs. Spring Cloud
-- 特征对比
-
-## 2. Istio
-
-### 2.1 Prerequsite Knowledge
-
-#### 2.1.1 What is Kubenetes?
-
-![History](https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg)
-
-**注: Tons of Benefits**
-
-#### 2.1.2 Why you need Kubernetes and what it can do?
-
-- Service discovery and load balancing
-- Storage orchestration
-- Automated rollouts and rollbacks
-- Automatic bin packing
-- Self-healing
-- Secret and configuration management
-
-**关键字: Deployment, Scaling, Load Balance**
-
-#### 2.1.3 Key Concept
-![Kubernetes Architecture](https://d33wubrfki0l68.cloudfront.net/2475489eaf20163ec0f54ddc1d92aa8d4c87c96b/e7c81/images/docs/components-of-kubernetes.svg)
-
-当你部署完Kubernetes，即拥有了一个完整的集群。
-
-一个Kubernetes集群由一组称为节点的机器组成。这些节点上运行 Kubernetes 所管理的容器化应用。集群具有至少一个工作节点。
-
-工作节点托管作为应用负载的组件的 Pod 。控制平面管理集群中的工作节点和 Pod 。 为集群提供故障转移和高可用性，这些控制平面一般跨多主机运行，集群跨多个节点运行。
-
-**Kubernetes是对容器部署、负载均衡、运维的OO之作**
-
-- Hardware
-    - Node
-        ![Node Overview](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
-        ![Nodes](https://miro.medium.com/max/700/1*uyMd-QxYaOk_APwtuScsOg.png)
-        ![Cluster](https://miro.medium.com/max/700/1*KoMzLETQeN-c63x7xzSKPw.png)
-
-- Software
-    - Pod
-        ![Pod Overview](https://d33wubrfki0l68.cloudfront.net/fe03f68d8ede9815184852ca2a4fd30325e5d15a/98064/docs/tutorials/kubernetes-basics/public/images/module_03_pods.svg)
-
-
-    - Deployment
-        ```yaml
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-        name: nginx-deployment
-        labels:
-            app: nginx
-        spec:
-        replicas: 3
-        selector:
-            matchLabels:
-            app: nginx
-        template:
-            metadata:
-            labels:
-                app: nginx
-            spec:
-            containers:
-            - name: nginx
-                image: nginx:1.14.2
-                ports:
-                - containerPort: 80
-        ```
-
-    - Service
-        ![Service in Kubernetes](https://matthewpalmer.net/kubernetes-app-developer/articles/service-route.gif)
-        ```yaml
-        apiVersion: v1
-        kind: Service
-        metadata:
-        name: my-service
-        spec:
-        selector:
-            app: MyApp
-        ports:
-        - protocol: TCP
-            port: 80
-            targetPort: 9376
-        ```
-
-### 2.2 Istio
-
-#### 2.2.1 Architecture
+# Architecture
 
 - **Data Plane**: a set of intelligent proxies (Envoy) deployed as sidecars
 - **Control Plane**: manages and configures the proxies to route traffic
@@ -150,9 +28,9 @@ Service Mesh vs. Spring Cloud
         * Startup time goes down
         * Resource usage goes down and responsiveness goes up
 
-## 3 In Action
+# In Action
 
-### 3.1 Security
+## 1. Security
 
 ![Security Architecture](https://istio.io/v1.8/docs/concepts/security/arch-sec.svg)
 
@@ -199,7 +77,7 @@ Service Mesh vs. Spring Cloud
     - The deny policy takes precedence over the allow policy.
 
 
-### 3.2 Traffic Management
+## 2. Traffic Management
 
 - How to traffic routing?
 
@@ -318,7 +196,7 @@ Service Mesh vs. Spring Cloud
     1. Configure service entries to provide controlled access to external services.
     1. Completely bypass the Envoy proxy for a specific range of IPs.
 
-### 3.3 Observability
+## 3. Observability
 For monitoring Istio traffic monitoring, we can use Prometheus, Jaeger, Grafanna and Kiali. All of them can be installed by helm.
 
 TIPS: `helm search repo [chart_name]` provides the ability to search for Heml charts.
@@ -362,22 +240,3 @@ TIPS: `helm search repo [chart_name]` provides the ability to search for Heml ch
 1. Loki
 
 1. Zipkin
-
-
-## References:
-
-### Kubernetes Related
-
-- Service Account - [Kubernetes Tips: Using a ServiceAccount](https://betterprogramming.pub/k8s-tips-using-a-serviceaccount-801c433d0023)
-
-- NodePort vs LoadBalancer vs Ingress
-
-    - [Access Services Running on Clusters
-](https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-services/)
-        `http://kubernetes_master_address/api/v1/namespaces/namespace_name/services/[https:]service_name[:port_name]/proxy`
-
-    - [Kubernetes NodePort vs LoadBalancer vs Ingress? When should I use what?](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
-
-- Kubernetes Concepts - [Kubernetes 101: Pods, Nodes, Containers, and Clusters](https://medium.com/google-cloud/kubernetes-101-pods-nodes-containers-and-clusters-c1509e409e16)
-
-- Istiod - [Introducing istiod: simplifying the control plane](https://istio.io/latest/blog/2020/istiod/)
