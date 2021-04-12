@@ -42,7 +42,35 @@ Service Mesh vs. Spring Cloud
 
 1. [Kubernetes Basic](https://github.com/codershangfeng/vote-kubernetes-resources/blob/main/docs/kubernetes-basic.md)
 
+### [Frameworks](https://techbeacon.com/app-dev-testing/9-open-source-service-meshes-compared)
+- Istio
+- Linkerd
+- Consul Connect
+- Kuma
+- Maesh
+- ServiceComb-mesher
+- Network Service Mesh (NSM)
+- AWS App Mesh
+- OpenShift Service Mesh by Red Hat
 
+### Which is Best for You?
+- 用Envoy吗？
+- 你的Use Case需要什么？
+    - 单体应用
+    - 多容器编排框架
+- 在用容器管理工具依赖？
+    - AWS EKS / OpenShift / Consul
+- 所在行业？
+    - Kuma -> Regular financial platform
+    - Network Service Mesh -> Lower-level networking telcos and ISPs
+- 服务监控程度？
+    - Observability
+- Open standards???
+- 工程师的开发体验？
+- 真的准备用Service Mesh了吗？
+    - 资源
+    - 技能
+- 其他
 
 ## 3. In Action - Istio 
 
