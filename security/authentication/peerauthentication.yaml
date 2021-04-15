@@ -5,4 +5,58 @@ metadata:
   namespace: istio-system
 spec:
   mtls:
-    mode: DISABLE
+    mode: STRICT # UNSET, DISABLE, PERMISIVE
+
+
+# apiVersion: security.istio.io/v1beta1
+# kind: PeerAuthentication
+# metadata:
+#   name: default
+#   namespace: foo
+# spec:
+#   mtls:
+#     mode: PERMISSIVE
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: PeerAuthentication
+# metadata:
+#   name: default
+#   namespace: foo
+# spec:
+#   selector:
+#     matchLabels:
+#       app: vote-service
+#   mtls:
+#     mode: STRICT
+
+
+# apiVersion: security.istio.io/v1beta1
+# kind: PeerAuthentication
+# metadata:
+#   name: default
+#   namespace: foo
+# spec:
+#   selector:
+#     matchLabels:
+#       app: vote-service
+#   mtls:
+#     mode: STRICT
+#   portLevelMtls:
+#     8080:
+#       mode: DISABLE
+
+
+# apiVersion: security.istio.io/v1beta1
+# kind: PeerAuthentication
+# metadata:
+#   name: default
+#   namespace: foo
+# spec:
+#   selector:
+#     matchLabels:
+#       app: finance
+#   mtls:
+#     mode: UNSET
+#   portLevelMtls:
+#     8080:
+#       mode: DISABLE
