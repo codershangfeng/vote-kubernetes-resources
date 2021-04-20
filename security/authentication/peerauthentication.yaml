@@ -5,7 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   mtls:
-    mode: STRICT # UNSET, DISABLE, PERMISIVE
+    mode: DISABLE # UNSET, DISABLE, PERMISIVE
 
 # spiffe: Secure Production Identity Framework for Everyone
 
